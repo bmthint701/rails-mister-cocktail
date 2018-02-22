@@ -1,10 +1,16 @@
 <h1>New Cocktail</h1>
 
 <%= simple_form_for @cocktail do |c| %>
-  <%= c.simple_fields_for :doses do |d| %>
     <%= c.input :name %>
-    <%= d.input :ingredient_id, collection: Ingredient.all %>
-    <%= d.input :description %>
-    <%= c.button :submit %>
+  <%= c.simple_fields_for :doses do |d| %>
+    <%= d.simple_fields_for :dose1 do |e| %>
+      <%= e.input :description %>
+      <%= e.input :ingredient, collection: Ingredient.all %>
+    <% end %>
+    <%= d.simple_fields_for :dose2 do |e| %>
+      <%= e.input :description %>
+      <%= e.input :ingredient, collection: Ingredient.all %>
+    <% end %>
   <% end %>
+  <%= c.button :submit %>
 <% end %>

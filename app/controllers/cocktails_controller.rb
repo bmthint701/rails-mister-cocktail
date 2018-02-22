@@ -7,10 +7,18 @@ class CocktailsController < ApplicationController
   end
   def new
     @cocktail = Cocktail.new
+    @ingredients = []
+    @descriptions = []
   end
   def create
+    ## TODO: add add'l validaiton
+    ## TODO: add new ingredients js
     @cocktail = Cocktail.create(name: params["cocktail"]["name"])
-    Dose.create(description: params["cocktail"]["doses"]["description"], ingredient_id: params["cocktail"]["doses"]["ingredient_id"], cocktail_id: @cocktail.id)
+    params["cocktail"]["doses"].each do |key, value|
+      unless value["description"].blank?
+        Dose.create!(description: value["description"], ingredient_id: value["ingredient"], cocktail_id: @cocktail.id)
+      end
+    end
     redirect_to cocktail_path(@cocktail)
   end
 end
