@@ -5,3 +5,4 @@
     <li><%= "#{ingredient.name} - #{ingredient.doses.where(cocktail_id: @cocktail.id).first.description}" %></li>
   <% end %>
 </ul>
+<%= link_to "Back", cocktails_path %>
