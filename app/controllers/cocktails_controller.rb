@@ -13,6 +13,7 @@ class CocktailsController < ApplicationController
   def create
     ## TODO: add add'l validaiton
     ## TODO: add new ingredients js
+    ## TODO: strong params
     @cocktail = Cocktail.create(name: params["cocktail"]["name"])
     params["cocktail"]["doses"].each do |key, value|
       unless value["description"].blank?
