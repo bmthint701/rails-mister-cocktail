@@ -4,34 +4,39 @@
     <div class="row">
       <%= simple_form_for @cocktail do |c| %>
       <div class="col-xs-12">
-          <%= c.input :name %>
+        <%= c.input :name %>
       </div>
     </div>
-        <%= c.simple_fields_for :doses do |d| %>
-          <%= d.simple_fields_for :dose1 do |e| %>
-          <div class="row">
-            <div class="col-xs-6">
-              <%= e.input :ingredient, collection: Ingredient.all %>
-            </div>
-            <div class="col-xs-6">
-              <%= e.input :description, label: 'Amount' %>
-            </div>
-          </div>
-          <% end %>
-          <%= d.simple_fields_for :dose2 do |e| %>
-          <div class="row">
-            <div class="col-xs-6">
-              <%= e.input :ingredient, collection: Ingredient.all %>
-            </div>
-            <div class="col-xs-6">
-              <%= e.input :description %>
-            </div>
-          </div>
-          <% end %>
-        <% end %>
-        <%= c.button :submit %>
+    <%= c.simple_fields_for :doses do |d| %>
+      <% 50.times do |i| %>
+        <div class = "dose hidden">
+            <%= d.simple_fields_for "#{('dose'+(i + 1).to_s)}".to_sym do |e| %>
+              <div class="row">
+                <div class="col-xs-6">
+                  <%= e.input :ingredient, collection: Ingredient.all %>
+                </div>
+                <div class="col-xs-4">
+                  <%= e.input :description, label: 'Amount' %>
+                </div>
+                <div class="col-xs-2">
+                  <button class="btn btn-primary delete" type="button">Delete</button>
+                </div>
+              </div>
+            <% end %>
+        </div>
       <% end %>
+    <% end %>
+  <div class="row">
+    <div class="col-xs-12">
+      <span class="glyphicon glyphicon-plus" id="plus" aria-hidden="true">Add Ingredient</span>
     </div>
-    <%= link_to "Back", root_path %>
+  <div class="row">
+    <div class="col-xs-12">
+      <%= c.button :submit %>
+    </div>
   </div>
+    <% end %>
+  </div>
+  </div>
+    <%= link_to "Back", root_path %>
 </div>
