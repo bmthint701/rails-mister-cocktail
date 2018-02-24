@@ -10,15 +10,26 @@
 <div class="container">
   <div class="row">
     <% @cocktails.each do |cocktail| %>
+      <% photo_url = cocktail.photo %>
       <div class="col-xs-12 col-sm-4">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
+        <% photo_url = cl_image_path("default.png") if cocktail.photo_url.nil? %>
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= photo_url %>);">
           <div class="card-description">
-            <!-- <%= link_to cocktail.name, cocktail_path(cocktail), class: "cocktail-name"%> -->
+            <!-- <%= link_to cocktail.name, cocktail_path(cocktail), class: "card-link"%> -->
             <h2><%= cocktail.name %></h2>
-            <p>Ingredients</p>
+            <% unless cocktail.ingredients.blank? %>
+              <% ingredients = "" %>
+              <% cocktail.ingredients.each_with_index do |v, i| %>
+                <% if i < (cocktail.ingredients.length - 1) %>
+                  <% ingredients = ingredients + "#{v.name}, " %>
+                <% else %>
+                  <% ingredients = ingredients + v.name %>
+                <% end %>
+              <% end %>
+              <p><%= ingredients %></p>
+            <% end %>
           </div>
-          <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
-          <a class="card-link" href="#" ></a>
+          <%= link_to cocktail.name, cocktail_path(cocktail), class: "card-link"%>
         </div>
       </div>
     <% end %>
