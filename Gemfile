@@ -9,6 +9,7 @@ gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'figaro'
 gem 'cloudinary'
+gem 'carrierwave', '~> 1.2'
 ruby '2.4.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

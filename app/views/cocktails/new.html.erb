@@ -3,6 +3,8 @@
     <h1>New Cocktail</h1>
       <%= simple_form_for @cocktail do |c| %>
         <%= c.input :name %>
+        <%= c.input :photo %>
+        <%= c.input :photo_cache, as: :hidden %>
         <%= c.simple_fields_for :doses do |d| %>
           <% 10.times do |i| %>
             <div class = "dose hidden">
@@ -18,13 +20,14 @@
             </div>
           <% end %>
         <% end %>
-        <%= c.button :button, type: :submit, class: "btn btn-primary" %>
+          <div class="row">
+            <div class="col-xs-12 add-ingredient">
+              <span class="glyphicon glyphicon-plus" id="plus" aria-hidden="true"></span>
+              <span>Add Ingredient</span>
+            </div>
+          </div>
+          <%= c.button :button, type: :submit, class: "btn btn-primary submit-button" %>
       <% end %>
-      <div class="row">
-        <div class="col-xs-12">
-          <span class="glyphicon glyphicon-plus" id="plus" aria-hidden="true">Add Ingredient</span>
-        </div>
-      </div>
       <%= link_to "Back", root_path %>
   </div>
 </div>
