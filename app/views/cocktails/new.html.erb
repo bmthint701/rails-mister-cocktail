@@ -8,7 +8,7 @@
             <div class = "dose hidden">
                 <%= d.simple_fields_for "#{('dose'+(i + 1).to_s)}".to_sym do |e| %>
                       <div class="input-box">
-                        <%= e.input :ingredient, collection: Ingredient.all %>
+                        <%= e.input :ingredient, collection: Ingredient.all.sort_by{ |i| i.name} %>
                       </div>
                       <div class="input-box">
                         <%= e.input :description, label: 'Amount' %>
