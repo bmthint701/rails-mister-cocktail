@@ -1,42 +1,30 @@
 <div class="container">
   <div class="contents">
     <h1>New Cocktail</h1>
-    <div class="row">
       <%= simple_form_for @cocktail do |c| %>
-      <div class="col-xs-12">
         <%= c.input :name %>
-      </div>
-    </div>
-    <%= c.simple_fields_for :doses do |d| %>
-      <% 50.times do |i| %>
-        <div class = "dose hidden">
-            <%= d.simple_fields_for "#{('dose'+(i + 1).to_s)}".to_sym do |e| %>
-              <div class="row">
-                <div class="col-xs-6">
-                  <%= e.input :ingredient, collection: Ingredient.all %>
-                </div>
-                <div class="col-xs-4">
-                  <%= e.input :description, label: 'Amount' %>
-                </div>
-                <div class="col-xs-2">
-                  <button class="btn btn-primary delete" type="button">Delete</button>
-                </div>
-              </div>
-            <% end %>
-        </div>
+        <%= c.simple_fields_for :doses do |d| %>
+          <% 10.times do |i| %>
+            <div class = "dose hidden">
+                <%= d.simple_fields_for "#{('dose'+(i + 1).to_s)}".to_sym do |e| %>
+                      <div class="input-box">
+                        <%= e.input :ingredient, collection: Ingredient.all %>
+                      </div>
+                      <div class="input-box">
+                        <%= e.input :description, label: 'Amount' %>
+                      </div>
+                      <button class="btn btn-primary delete" type="button">Delete</button>
+                <% end %>
+            </div>
+          <% end %>
+        <% end %>
+        <%= c.button :button, type: :submit, class: "btn btn-primary" %>
       <% end %>
-    <% end %>
-  <div class="row">
-    <div class="col-xs-12">
-      <span class="glyphicon glyphicon-plus" id="plus" aria-hidden="true">Add Ingredient</span>
-    </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <%= c.button :submit %>
-    </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <span class="glyphicon glyphicon-plus" id="plus" aria-hidden="true">Add Ingredient</span>
+        </div>
+      </div>
+      <%= link_to "Back", root_path %>
   </div>
-    <% end %>
-  </div>
-  </div>
-    <%= link_to "Back", root_path %>
 </div>

@@ -4,11 +4,16 @@
 .contents {
   height: calc(100vh - 150px);
 }
-
-.dose{
+.dose {
   display: flex;
+  align-items: center;
 }
-
+.input-box {
+  margin-right: 10px;
+}
+.delete {
+  margin-top: 10px;
+}
 .hidden {
   display: none;
 }
