@@ -1,6 +1,6 @@
 class CocktailsController < ApplicationController
   def index
-    @cocktails = Cocktail.all
+    @cocktails = Cocktail.all.sort_by{ |c| c.name }
   end
   def show
     @cocktail = Cocktail.find(params[:id])
