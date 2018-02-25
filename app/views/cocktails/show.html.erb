@@ -26,9 +26,8 @@
       </div>
       <div class="col-xs-12 col-md-6">
         <h3>Ingredients</h3>
-        <%= link_to "Cancel", cocktail_path(@cocktail), class: "hidden" %>
-
-        <%= link_to "Delete Cocktail", cocktail_path(@cocktail), method: :delete, data: { confirm: "Are you sure?" }, class: "hidden"  %>
+        <%= link_to "Cancel", cocktail_path(@cocktail), class: "hidden", style: "display: block;" %>
+        <%= link_to "Delete Cocktail", cocktail_path(@cocktail), method: :delete, data: { confirm: "Are you sure?" }, class: "hidden btn btn-danger"  %>
         <% if @cocktail.ingredients.empty? %>
           <%= "No ingredients - press edit to add some!" %>
         <ul>
@@ -63,17 +62,17 @@
 </div>
 
 <script type="text/javascript">
-function showEditControls() {
-  const editButton = document.getElementById('edit-button');
-  const hiddenElements = document.querySelectorAll('.hidden');
-  editButton.addEventListener('click', (event) => {
-    event.preventDefault();
-    hiddenElements.forEach((element) => {
-      element.classList.remove('hidden');
+  function showEditControls() {
+    const editButton = document.getElementById('edit-button');
+    const hiddenElements = document.querySelectorAll('.hidden');
+    editButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      hiddenElements.forEach((element) => {
+        element.classList.remove('hidden');
+      });
+      editButton.classList.add('hidden');
+      document.getElementById('description-text').classList.add('hidden');
     });
-    editButton.classList.add('hidden');
-    document.getElementById('description-text').classList.add('hidden');
-  });
-}
-showEditControls();
+  }
+  showEditControls();
 </script>

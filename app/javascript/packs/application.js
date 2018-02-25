@@ -8,7 +8,8 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import 'bootstrap';
-import { dose } from 'new';
-import { showEditControls } from 'edit';
-showEditControls();
-dose();
+// import { dose } from 'new';
+// import { showEditControls } from 'edit';
+
+// showEditControls();
+// dose();
