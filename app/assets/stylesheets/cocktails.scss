@@ -1,7 +1,7 @@
 // Place all the styles related to the cocktails controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.contents {
+.contents-new {
   height: calc(100vh - 150px);
 }
 .dose {
@@ -25,4 +25,25 @@
 .submit-button {
   margin-top: 5px;
   margin-bottom: 10px;
+}
+.contents-show{
+  height: calc(100vh - 40vh - 70px)
+}
+.contents-show ul{
+  margin-top: 10px;
+}
+.ingredient-delete {
+  display: flex;
+  justify-content: space-between;
+}
+.ingredient-delete a{
+  margin: 0;
+}
+
+.show-dose{
+  display: flex;
+}
+
+#cocktail_ingredient_description {
+  margin-left: 5px;
 }

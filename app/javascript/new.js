@@ -15,8 +15,6 @@ function dose() {
       let descriptionElement = 'cocktail_doses_dose' + counter + '_description';
       document.getElementById(ingredientElement).value = '';
       document.getElementById(descriptionElement).value = '';
-      console.log(hiddenDoses);
-      console.log(counter);
       counter -= 1;
       hiddenDoses[counter].classList.add('hidden');
     });

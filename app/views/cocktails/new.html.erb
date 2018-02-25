@@ -1,8 +1,9 @@
 <div class="container">
-  <div class="contents">
+  <div class="contents-new">
     <h1>New Cocktail</h1>
       <%= simple_form_for @cocktail do |c| %>
         <%= c.input :name %>
+        <%= c.input :description %>
         <%= c.input :photo %>
         <%= c.input :photo_cache, as: :hidden %>
         <%= c.simple_fields_for :doses do |d| %>

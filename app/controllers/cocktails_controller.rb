@@ -14,7 +14,7 @@ class CocktailsController < ApplicationController
     ## TODO: add add'l validaiton
     ## TODO: add new ingredients js
     ## TODO: strong params
-    @cocktail = Cocktail.new(name: params["cocktail"]["name"], photo: params["cocktail"]["photo"])
+    @cocktail = Cocktail.new(name: params["cocktail"]["name"], photo: params["cocktail"]["photo"], description: params["cocktail"]["description"])
     pass = true
     if @cocktail.save
       params["cocktail"]["doses"].each do |key, value|

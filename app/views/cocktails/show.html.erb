@@ -9,21 +9,50 @@
   </div>
 </div>
 
-
-<h3>Ingredients</h3>
-<span><%= link_to "Delete cocktail", cocktail_path(@cocktail), method: :delete, data: { confirm: "Are you sure?" }  %></span>
-<ul>
-  <% @cocktail.ingredients.each do |ingredient| %>
-    <li><%= "#{ingredient.name} - #{ingredient.doses.where(cocktail_id: @cocktail.id).first.description}"%><span class = 'delete'><%= link_to "Delete", cocktail_dose_path(@cocktail, ingredient.doses.where(cocktail_id: @cocktail.id).first), method: :delete, data: { confirm: "Are you sure" } %></span></%></li>
-  <% end %>
-</ul>
-
-<%= simple_form_for @cocktail do |c| %>
-  <%= c.simple_fields_for :ingredient do |i| %>
-      <%= i.input :description %>
-      <%= i.input :ingredient, collection: Ingredient.all %>
-  <% end %>
-  <%= c.button :submit %>
-<% end %>
-
-<%= link_to "Back", root_path %>
+<div class="container">
+  <div class="contents-show">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <h3>Description</h3>
+        <% description_text = @cocktail.description %>
+        <% description_text = "Press edit to add a description!" if @cocktail.description.blank? %>
+        <div id="description-text"><%= description_text %></div>
+        <div class="hidden" id="description-form">
+          <%= simple_form_for @cocktail do |c| %>
+            <%= c.input :description, label: false %>
+            <%= c.button :submit, class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <h3>Ingredients</h3>
+        <%= link_to "Cancel", cocktail_path(@cocktail), class: "hidden" %>
+        <a href="#" id="edit-button" class="btn btn-primary">Edit</a>
+        <br><%= link_to "Delete Cocktail", cocktail_path(@cocktail), method: :delete, data: { confirm: "Are you sure?" }, class: "hidden"  %>
+        <ul>
+          <% @cocktail.ingredients.each do |ingredient| %>
+            <li>
+              <div class="ingredient-delete">
+                <%= "#{ingredient.name} - #{ingredient.doses.where(cocktail_id: @cocktail.id).first.description}"%>
+                <%= link_to "Delete Ingredient", cocktail_dose_path(@cocktail, ingredient.doses.where(cocktail_id: @cocktail.id).first), method: :delete, data: { confirm: "Are you sure" }, class: "delete hidden" %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+        <div class="hidden">
+          <hr>
+          <h3>Add Ingredient</h3>
+          <%= simple_form_for @cocktail do |c| %>
+            <%= c.simple_fields_for :ingredient do |i| %>
+              <div class="show-dose">
+                <%= i.input :ingredient, collection: Ingredient.all.sort_by{ |i| i.name } %>
+                <%= i.input :description, label: 'Amount of Ingredient' %>
+              </div>
+            <% end %>
+            <%= c.button :submit, 'Add', class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
