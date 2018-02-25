@@ -1,7 +1,15 @@
-<h1><%= @cocktail.name %></h1>
 <% photo_url = @cocktail.photo %>
-<% photo_url = cl_image_path("default.png", :width => 500, :height => 500, :crop => :limit) if @cocktail.photo_url.nil? %>
-<%= cl_image_tag(photo_url, :width => 500, :height => 500, :crop => :limit) %>
+<% photo_url = cl_image_path("default.png") if @cocktail.photo_url.nil? %>
+
+
+<div class= "banner-show"  style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+   url('<%= cl_image_path(photo_url)%>')">
+  <div class="banner-content">
+    <h2><%= @cocktail.name %></h2>
+  </div>
+</div>
+
+
 <h3>Ingredients</h3>
 <span><%= link_to "Delete cocktail", cocktail_path(@cocktail), method: :delete, data: { confirm: "Are you sure?" }  %></span>
 <ul>
